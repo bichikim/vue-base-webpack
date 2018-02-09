@@ -1,0 +1,19 @@
+.DS_Store
+node_modules/
+dist/
+public/
+# log directories and files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+tests/unit/coverage
+# environment files
+yarn.lock
+package-lock.json
+.env
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+flow-typed/
