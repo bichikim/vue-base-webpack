@@ -5,9 +5,9 @@
  * @license Private
  */
 // import webpackProdConf from '../lib/webpack/webpack.prod.conf'
-import webpackDevConf from '../lib/webpack/webpack.dev.conf'
+import webpackDevConf from './webpack/webpack.dev.conf'
 import webpackMerge from 'webpack-merge'
-import {Config, DEVELOPMENT, PRODUCTION, TEST} from '../lib/webpack/Config'
+import {Config, DEVELOPMENT, PRODUCTION, TEST} from './webpack/Config'
 export default (config, state, webpackConfig = {}) => {
   const conf = new Config(config)
   switch(state){

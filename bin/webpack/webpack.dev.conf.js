@@ -5,12 +5,18 @@
  * @license Private
  */
 import webpack from 'webpack'
-import webpackBaseConf from './webpack.base.conf'
+import getWebpackConfig from './webpack.base.conf'
 import margeWebpack from 'webpack-merge'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import {DEVELOPMENT} from './Config'
+
+
 export default (config) => {
-  return margeWebpack(webpackBaseConf(config, DEVELOPMENT), {
+  const webpackBaseConf = getWebpackConfig(config, DEVELOPMENT)
+  Object.keys(webpackBaseConf.entry).forEach((key) => {
+    webpackBaseConf.entry[key] = ['./hot-client', ...webpackBaseConf.entry[key]]
+  })
+  return margeWebpack(webpackBaseConf, {
     devtool: '#cheap-module-eval-source-map',
     plugins: [
       new webpack.HotModuleReplacementPlugin(),

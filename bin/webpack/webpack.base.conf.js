@@ -13,9 +13,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import {Config, PRODUCTION} from './Config'
 import webpack from 'webpack'
 export default (config, state = PRODUCTION) => {
-  const {
-    name, env, version, serviceWorker,
-  } = config
+  const {name, env, version} = config
   const {isSourceMap, isExtract} = Config
   const stateConfig = config.getStateConfig(state)
   const resolve = (...path) => {
@@ -55,9 +53,12 @@ export default (config, state = PRODUCTION) => {
         filename: stateConfig.files.indexHtml,
         template: stateConfig.files.indexTemplate,
         inject: true,
-        ...serviceWorker ? {
-          serviceWorkerLoader: `<script>${fs.readFileSync(join(__dirname,
-            './service-worker-dev.js'), 'utf-8')}</script>`,
+        ...stateConfig.serviceWorker ? {
+          serviceWorkerLoader: `
+            <script>
+                ${fs.readFileSync(resolve(stateConfig.serviceWorker), 'utf-8')}
+            </script>`
+          ,
         } : {},
       }),
     ],

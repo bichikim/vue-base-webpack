@@ -4,4 +4,8 @@
  * @copyright PJ Factory Co.
  * @license Private
  */
-export default {}
+export default [
+  "> 1%",
+  "last 2 versions",
+  "not ie <= 8",
+]
