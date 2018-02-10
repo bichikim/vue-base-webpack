@@ -13,7 +13,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import {Config, PRODUCTION} from './Config'
 import webpack from 'webpack'
 export default (config, state = PRODUCTION) => {
-  const {name, env, version} = config
+  const {env, version} = config
   const {isSourceMap, isExtract} = Config
   const stateConfig = config.getStateConfig(state)
   const resolve = (...path) => {
@@ -23,12 +23,12 @@ export default (config, state = PRODUCTION) => {
     posix.join(resolve(stateConfig.paths.asset), path)
   }
   return {
-    name,
+    // name,
     entry: {
       app: ['babel-polyfill', resolve(stateConfig.paths.source, stateConfig.files.indexJs)],
     },
     output: {
-      path: stateConfig.paths.output,
+      path: resolve(stateConfig.paths.output),
       publicPath: stateConfig.publicPath,
       filename: '[name].js',
     },
