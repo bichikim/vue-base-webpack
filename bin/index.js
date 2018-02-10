@@ -4,7 +4,7 @@
  * @copyright PJ Factory Co.
  * @license Private
  */
-import webpackProdConf from '../lib/webpack/webpack.prod.conf'
+// import webpackProdConf from '../lib/webpack/webpack.prod.conf'
 import webpackDevConf from '../lib/webpack/webpack.dev.conf'
 import webpackMerge from 'webpack-merge'
 import {Config, DEVELOPMENT, PRODUCTION, TEST} from '../lib/webpack/Config'
@@ -13,10 +13,9 @@ export default (config, state, webpackConfig = {}) => {
   switch(state){
   case DEVELOPMENT:
     return webpackMerge(webpackDevConf(conf), webpackConfig)
-  case PRODUCTION:
-    return webpackMerge(webpackProdConf(conf), webpackConfig)
+  // case PRODUCTION:
+  //   return webpackMerge(webpackProdConf(conf), webpackConfig)
   }
-
 }
 
 export {DEVELOPMENT, PRODUCTION, TEST}

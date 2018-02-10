@@ -8,7 +8,7 @@
   "scripts": {
     "unit": "babel-node mocha --recursive -R spec",
     "build": "babel",
-    "start": "babel-node test/start"
+    "start": "babel-node tests/start"
   },
   "engines": {
     "node": ">= 4.0.0",
