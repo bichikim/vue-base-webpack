@@ -10,7 +10,7 @@ export default {
   name: '',
   version: '',
   serviceWorker: false,
-  publicPath: './',
+  publicPath: '/',
   env: {},
   meta: {},
   store: {},

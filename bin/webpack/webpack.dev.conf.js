@@ -14,7 +14,7 @@ import {DEVELOPMENT} from './Config'
 export default (config) => {
   const webpackBaseConf = getWebpackConfig(config, DEVELOPMENT)
   Object.keys(webpackBaseConf.entry).forEach((key) => {
-    webpackBaseConf.entry[key] = ['./hot-client', ...webpackBaseConf.entry[key]]
+    webpackBaseConf.entry[key] = ['./bin/webpack/hot-client', ...webpackBaseConf.entry[key]]
   })
   return margeWebpack(webpackBaseConf, {
     devtool: '#cheap-module-eval-source-map',
