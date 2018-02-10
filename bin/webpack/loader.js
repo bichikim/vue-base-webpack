@@ -5,6 +5,7 @@
  * @license Private
  */
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import autoprefixer from 'autoprefixer'
 const getLoader = (loaderName, options = {}, extraOptions = {}) => {
   if(!loaderName){
     throw new Error('[getLoader] must has a loaderName')
@@ -21,7 +22,7 @@ const getLoader = (loaderName, options = {}, extraOptions = {}) => {
 }
 
 const cssLoaders = (options = {}) => {
-  const {extract = true, usePostCSS = true} = options
+  const {extract = true, usePostCSS = true, browsers = []} = options
   const cssLoader = getLoader('css', options)
   const postcssLoader = getLoader('postcss', options)
   
@@ -41,7 +42,11 @@ const cssLoaders = (options = {}) => {
   
   return {
     css: generateLoaders(),
-    postcss: generateLoaders(),
+    postcss: generateLoaders(null, {
+      'plugins': [
+        autoprefixer({browsers}),
+      ],
+    }),
     less: generateLoaders('less'),
     sass: generateLoaders('sass', {indentedSyntax: true}),
     scss: generateLoaders('sass'),
@@ -53,7 +58,7 @@ const cssLoaders = (options = {}) => {
 export const vueLoader =  (options = {}) => {
   const {
     sourceMap = false, extract = true, cacheBusting = false, esModule = true, babel,
-    usePostCSS = true,
+    usePostCSS = true, browsers = [],
   } = options
   return {
     loaders: {
@@ -61,6 +66,7 @@ export const vueLoader =  (options = {}) => {
         sourceMap,
         usePostCSS,
         extract,
+        browsers,
       }),
       ...babel ? {
         js: {

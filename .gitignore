@@ -1,6 +1,6 @@
 .DS_Store
 node_modules/
-dist/
+tests/public/
 public/
 # log directories and files
 npm-debug.log*

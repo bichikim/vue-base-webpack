@@ -22,7 +22,6 @@ export default (config, state = PRODUCTION) => {
   const asset = (path) => {
     posix.join(resolve(stateConfig.paths.asset), path)
   }
-  
   return {
     name,
     entry: {
@@ -81,6 +80,7 @@ export default (config, state = PRODUCTION) => {
             extract: isExtract(state),
             cacheBusting: true,
             babel: stateConfig.babel,
+            browser: stateConfig.browser,
           }),
         },
         {
@@ -116,6 +116,7 @@ export default (config, state = PRODUCTION) => {
         ...styleLoader({
           sourceMap: isSourceMap(state),
           usePostCSS: true,
+          browser: stateConfig.browser,
         }),
       ],
     },
