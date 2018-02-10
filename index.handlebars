@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" >
+    <title><%= htmlWebpackPlugin.options.appName %>-{{title}}</title> <!-- google, naver will take is as a page title -->
+    <!-- Sharing data settings --> <!-- refer to this http://futurecreator.github.io/2016/06/16/opengraph-social-meta-tag/ -->
+    <meta name="description" content="{{description}}"> <!-- for google,  -->
+    <meta name="og:image" content="{{thumbnail}}"> <!-- page thumbnail ex: https://www.tagdetail.com/dasdsa43q2dsa.jpeg-->
+    <meta name="og:title" content="{{title}}"> <!-- page title ex: The detail-->
+    <meta name="og:description" content="{{description}}"> <!-- page description ex: this is description-->
+    <meta name="og:type" content="{{type}}"> <!-- ex: website, article -->
+    <meta name="og:url" content="{{contentUrl}}"> <!--current url for this page ex: https://web.tagdetail.com/viewer/02ds-->
+    <meta name="og:site_name" content="<%= htmlWebpackPlugin.options.appName %>"> <!-- site name ex: Detail-->
+    <meta name="og:image:width" content="{{thumbnailWidth}}"> <!-- thumbnail width -->
+    <meta name="og:image:height" content="{{thumbnailHeight}}"> <!-- thumbnail height -->
+    <meta name="og:image:type" content="{{thumbnailType}}"> <!-- ex: image/jpeg image/png image/gif -->
+    <meta name="og:locale" content="{{locale}}"> <!-- ex: kr_KR en_US -->
+    <meta name="detail:app-store" content="<%= htmlWebpackPlugin.options.appStore %>">
+    <meta name="detail:google-play" content="<%= htmlWebpackPlugin.options.googlePlay %>">
+    <!-- for facebook --><meta name="fb:app_id" content="<%= htmlWebpackPlugin.options.facebookAppId %>"> <!-- facebook api_id -->
+    <!-- from twitter --><meta name="twitter:card" content="summary">
+    <!-- from twitter --><meta name="twitter:title" content="{{title}}">
+    <!-- from twitter --><meta name="twitter:description" content="{{description}}">
+    <!-- from twitter --><meta name="twitter:image" content="{{thumbnail}}">
+    <!-- icon setting -->
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-16x16.png">
+    <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
+    <!-- Add to home screen for Android and modern mobile browsers -->
+    <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/manifest.json">
+    <meta id="theme-color" name="theme-color" content="<%= htmlWebpackPlugin.options.appColor %>">
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="{{title}}">
+    <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/apple-touch-icon-152x152.png">
+    <!-- Add to home screen for Windows -->
+    <meta name="msapplication-TileImage" content="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <% for (var chunk of webpack.chunks) {
+        for (var file of chunk.files) {
+          if (file.match(/\.(js|css)$/)) { %>
+    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
+    <!-- font files -->
+    <!-- no files -->
+  </head>
+  <body>
+    <noscript>
+      Sorry. {{siteName}} cannot load javascript files for now.
+    </noscript>
+    <div id="app"></div>
+    <!-- Todo: only include in production -->
+    <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
+    <!-- built files will be auto injected -->
+  <script id="pre-data">
+    window.__data__ = '{{{data}}}';
+    window.__meta__ = '{{{meta}}}';
+  </script>
+  </body>
+</html>

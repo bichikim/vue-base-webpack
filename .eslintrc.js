@@ -22,8 +22,8 @@ module.exports = {
       "singleline": 5,
       "multiline": {
         "max": 3,
-        "allowFirstLine": false
-      }
+        "allowFirstLine": false,
+      },
     }],
     // 'vue/jsx-uses-vars': 'error',
     // common javascript options
@@ -64,7 +64,7 @@ module.exports = {
       },
     }],
     // code style options
-    'func-style': ['error', 'declaration', {'allowArrowFunctions': true }],
+    'func-style': ['error', 'declaration', {'allowArrowFunctions': true}],
     'comma-style': ['error', 'last'],
     // 'linebreak-style': ['error', 'unix'],
     // type script options
@@ -98,5 +98,5 @@ module.exports = {
     'typescript/no-explicit-any': 'off',
     'typescript/no-type-alias': 'off',
     'typescript/no-use-before-define ': 'off',
-  }
+  },
 };
