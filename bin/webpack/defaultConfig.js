@@ -9,6 +9,7 @@ import browsers from './browserConfig'
 export default {
   name: '',
   version: '',
+  vendor: [],
   serviceWorker: false,
   publicPath: '/',
   env: {},
@@ -32,7 +33,7 @@ export default {
   babel: {
     plugins: ['lodash'],
     presets: [[
-      'evn', {
+      'env', {
         modules: false,
         targets: {
           browsers,

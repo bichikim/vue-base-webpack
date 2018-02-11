@@ -25,6 +25,7 @@ export default (config, state = PRODUCTION) => {
   return {
     // name,
     entry: {
+      // vendor: ['vue', 'vue-router', 'vue-meta'],
       app: ['babel-polyfill', resolve(stateConfig.paths.source, stateConfig.files.indexJs)],
     },
     output: {
